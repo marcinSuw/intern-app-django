@@ -5,14 +5,55 @@ Django i Django REST framework.
 
 Udostępnia cztery endpointy:
 
-	I: /login/: email + haslo; zwraca: token
-	II: /register/: Email, username, haslo; zwraca: token
-	III: /users/me/: Pobranie aktualnie zalogowanego użytkownika
-	    wymaga autoryzacji przy pomocy otrzymanego tokena
-	IV: /users/: Pobieranie wszystkich użytkowników
-	    wymaga autoryzacji przy pomocy otrzymanego tokena
+	I: Logowanie
+		metoda: POST
+	 	endpoint: `/login/`
+		przykładowy json:
+		{
+			"email": "test@gmail.com",
+			"password": "12345678",
+		}
+	  	zwraca:
+		{
+			token: TOKEN
+		}
+	II: Rejestracja
+		metoda: POST
+		endpoint: `/register/`
+		przykładowy json:
+		{
+			"email": "test@gmail.com",
+			"username": "test",
+			"password": "12345678",
+			"password2": "12345678"
+		}
+		zwraca:
+		{
+			token: TOKEN
+		}
 
-
+	III: Pobranie aktualnie zalogowanego użytkownika
+		metoda: GET + Autoryzacja ( JWT TOKEN )
+		endpoint: `/users/me/`
+		zwraca:
+		{
+    		"username": "test",
+    		"email": "test@gmail.com"
+		}
+	IV: Pobieranie wszystkich użytkowników
+		metoda: GET + Autoryzacja ( JWT TOKEN )
+		endpoint: `/users/`
+		zwraca:
+		[
+    		{
+    		    "email": "test1@gmail.com",
+    		    "username": "test1"
+    		},
+    		{
+    		    "email": "test2@gmail.com",
+    		    "username": "test2"
+    		}
+		]
 
 Wymagania:
 
